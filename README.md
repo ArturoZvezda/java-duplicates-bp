@@ -11,9 +11,9 @@ Este proyecto es una aplicación en Java que lee un archivo Excel (en formato `.
 
 - **`src/main/java/org/example`**: Contiene el código fuente del proyecto.
     - **`Main.java`**: Clase principal que ejecuta la aplicación.
-    - **`DuplicateFinder.java`**: Contiene la lógica para leer el archivo Excel y encontrar duplicados.
-
-- **`data`**: Contiene el archivo de datos `input.xlsx` que debe ser procesado por la aplicación.
+    - **`DuplicateDetector.java`**: Contiene la lógica encontrar duplicados.
+    - **`ExcelReader.java`**: Contiene la logica para leer el archivo Excel.
+    - **`data`**: Contiene el archivo de datos `input.xlsx` que debe ser procesado por la aplicación.
 
 ## Dependencias
 
