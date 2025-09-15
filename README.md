@@ -1,4 +1,4 @@
-# Java Duplicates Finder
+# Buscador de duplicados en lista de contactos (Duplicate Finder)
 
 Este proyecto es una aplicación en Java que lee un archivo Excel (en formato `.xlsx`) y detecta duplicados en los datos. Utiliza Apache POI para manejar el archivo Excel y procesa los datos de manera eficiente.
 
