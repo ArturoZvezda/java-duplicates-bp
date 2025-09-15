@@ -19,12 +19,25 @@ public class ExcelReader {
         Workbook workbook = new XSSFWorkbook(file);
         Sheet sheet = workbook.getSheetAt(0);  // Tomamos la primera hoja
 
-        // Iterar sobre las filas del archivo
-        for (Row row : sheet) {
+        // Obtener la primera fila (encabezados de columna)
+        Row headerRow = sheet.getRow(0);
+        List<String> columnNames = new ArrayList<>();
+
+        // Recorrer la primera fila para obtener los nombres de las columnas
+        for (Cell cell : headerRow) {
+            columnNames.add(cell.toString());
+        }
+
+        // Iterar sobre las filas del archivo a partir de la segunda fila (saltando los encabezados)
+        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+            Row row = sheet.getRow(i);
             Map<String, String> contact = new HashMap<>();
-            for (Cell cell : row) {
-                String columnName = "Column" + cell.getColumnIndex(); // Asignar un nombre a cada columna
-                contact.put(columnName, cell.toString());
+
+            // Asociar los valores de las celdas con los nombres de las columnas
+            for (int j = 0; j < row.getPhysicalNumberOfCells(); j++) {
+                String columnName = columnNames.get(j);
+                String cellValue = row.getCell(j).toString();
+                contact.put(columnName, cellValue);
             }
             contacts.add(contact);
         }

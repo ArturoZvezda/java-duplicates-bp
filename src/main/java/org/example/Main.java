@@ -6,7 +6,8 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        String filePath = "data/input.xlsx";  // Ruta al archivo Excel
+        // Ruta al archivo Excel
+        String filePath = "data/input.xlsx";
 
         // Verificar si el archivo existe
         if (!ExcelReader.isFileExists(filePath)) {
@@ -15,23 +16,26 @@ public class Main {
         }
 
         try {
-            // Leer los datos del archivo
+            // Leer los datos del archivo Excel
             List<Map<String, String>> contacts = ExcelReader.readExcelFile(filePath);
 
             // Detectar duplicados en los contactos
             List<Map<String, String>> duplicates = DuplicateDetector.findDuplicates(contacts);
 
-            // Mostrar los duplicados encontrados
+            // Mostrar los duplicados encontrados con formato similar al esperado
             if (!duplicates.isEmpty()) {
-                System.out.println("Se encontraron duplicados:");
+                System.out.println("Salida:");
+                System.out.println("| ContactIDOrigen | ContactIDCoincidencia | Precision |");
                 for (Map<String, String> duplicate : duplicates) {
-                    System.out.println(duplicate);
+                    System.out.println("| " + duplicate.get("ContactIDOrigen") + " | " +
+                            duplicate.get("ContactIDCoincidencia") + " | " +
+                            duplicate.get("Precision") + " |");
                 }
             } else {
                 System.out.println("No se encontraron duplicados.");
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
+            System.out.println("Error al procesar el archivo: " + e.getMessage());
         }
     }
 }
